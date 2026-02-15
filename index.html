@@ -4,99 +4,146 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<meta name="googlebot" content="noindex">
-<title>Compatibility Mode</title>
+<title>Compatibility Portfolio</title>
 
 <style>
-body{
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #111;
-  color: white;
-  text-align:center;
+*{
   margin:0;
-  padding:40px;
+  padding:0;
+  box-sizing:border-box;
+  font-family:-apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-h1{
-  font-weight:300;
+body{
+  background:#0f0f0f;
+  color:white;
 }
 
-.container{
-  max-width:500px;
+section{
+  padding:80px 20px;
+  max-width:1000px;
   margin:auto;
 }
 
-.checkbox{
-  margin:10px;
+.hero{
+  text-align:center;
+  padding-top:120px;
 }
 
-#score{
-  font-size:40px;
+.hero h1{
+  font-size:50px;
+  font-weight:600;
+}
+
+.hero p{
   margin-top:20px;
+  font-size:20px;
+  opacity:0.7;
+}
+
+.card{
+  background:#1c1c1e;
+  padding:30px;
+  border-radius:20px;
+  margin-top:40px;
+}
+
+.interests{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+  margin-top:20px;
+}
+
+.interest{
+  background:#2c2c2e;
+  padding:15px;
+  border-radius:15px;
+  cursor:pointer;
+  transition:0.2s;
+  text-align:center;
+}
+
+.interest:hover{
+  background:#3a3a3c;
 }
 
 .progress{
   height:10px;
-  background:#333;
+  background:#2c2c2e;
   border-radius:5px;
   margin-top:20px;
 }
 
 .bar{
   height:10px;
-  background:lime;
+  background:#0a84ff;
   width:0%;
   border-radius:5px;
   transition:0.3s;
+}
+
+.score{
+  font-size:40px;
+  margin-top:20px;
+  text-align:center;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<section class="hero">
+  <h1>Hola, soy Eduardo</h1>
+  <p>Optimizado para compatibilidad emocional y crecimiento mutuo.</p>
+</section>
 
-<h1>¿Somos compatibles?</h1>
+<section>
+  <div class="card">
+    <h2>Sobre mí</h2>
+    <p style="margin-top:15px; opacity:0.7;">
+      Me gusta el gym, la tecnología, crecer profesionalmente y tener conversaciones profundas.
+      Busco algo estable, divertido y con visión de futuro.
+    </p>
+  </div>
+</section>
 
-<div class="checkbox">
-<input type="checkbox" value="15" onchange="updateScore()"> Gym
-</div>
+<section>
+  <div class="card">
+    <h2>Veamos qué tan compatibles somos</h2>
 
-<div class="checkbox">
-<input type="checkbox" value="20" onchange="updateScore()"> Ambición
-</div>
+    <div class="interests">
+      <div class="interest" onclick="addScore(15)">Gym</div>
+      <div class="interest" onclick="addScore(20)">Ambición</div>
+      <div class="interest" onclick="addScore(10)">Noche tranquila</div>
+      <div class="interest" onclick="addScore(15)">Tecnología</div>
+      <div class="interest" onclick="addScore(20)">Relación seria</div>
+      <div class="interest" onclick="addScore(10)">Viajar</div>
+    </div>
 
-<div class="checkbox">
-<input type="checkbox" value="10" onchange="updateScore()"> Noche tranquila
-</div>
+    <div class="progress">
+      <div class="bar" id="bar"></div>
+    </div>
 
-<div class="checkbox">
-<input type="checkbox" value="15" onchange="updateScore()"> Tecnología
-</div>
-
-<div id="score">0%</div>
-
-<div class="progress">
-<div class="bar" id="bar"></div>
-</div>
-
-</div>
+    <div class="score" id="score">0%</div>
+  </div>
+</section>
 
 <script>
-function updateScore(){
-  let checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-  let total = 0;
-  
-  checkboxes.forEach(box => {
-    total += parseInt(box.value);
-  });
+let total = 0;
 
+function addScore(points){
+  total += points;
   if(total > 100) total = 100;
 
-  document.getElementById("score").innerText = total + "%";
   document.getElementById("bar").style.width = total + "%";
+  document.getElementById("score").innerText = total + "%";
 }
 </script>
+
+</body>
+</html>
+
 
 </body>
 </html>
