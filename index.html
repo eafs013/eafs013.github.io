@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex">
+<title>Compatibility Mode</title>
+
+<style>
+body{
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #111;
+  color: white;
+  text-align:center;
+  margin:0;
+  padding:40px;
+}
+
+h1{
+  font-weight:300;
+}
+
+.container{
+  max-width:500px;
+  margin:auto;
+}
+
+.checkbox{
+  margin:10px;
+}
+
+#score{
+  font-size:40px;
+  margin-top:20px;
+}
+
+.progress{
+  height:10px;
+  background:#333;
+  border-radius:5px;
+  margin-top:20px;
+}
+
+.bar{
+  height:10px;
+  background:lime;
+  width:0%;
+  border-radius:5px;
+  transition:0.3s;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>¿Somos compatibles?</h1>
+
+<div class="checkbox">
+<input type="checkbox" value="15" onchange="updateScore()"> Gym
+</div>
+
+<div class="checkbox">
+<input type="checkbox" value="20" onchange="updateScore()"> Ambición
+</div>
+
+<div class="checkbox">
+<input type="checkbox" value="10" onchange="updateScore()"> Noche tranquila
+</div>
+
+<div class="checkbox">
+<input type="checkbox" value="15" onchange="updateScore()"> Tecnología
+</div>
+
+<div id="score">0%</div>
+
+<div class="progress">
+<div class="bar" id="bar"></div>
+</div>
+
+</div>
+
+<script>
+function updateScore(){
+  let checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+  let total = 0;
+  
+  checkboxes.forEach(box => {
+    total += parseInt(box.value);
+  });
+
+  if(total > 100) total = 100;
+
+  document.getElementById("score").innerText = total + "%";
+  document.getElementById("bar").style.width = total + "%";
+}
+</script>
+
+</body>
+</html>
